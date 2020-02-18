@@ -1,5 +1,7 @@
 import React from 'react';
 import './ProductList.css';
+import { euroCurrency } from '../utils/euro-currency';
+import { uppercase } from '../utils/uppercase';
 
 class ProductList extends React.Component {
   constructor(props) {
@@ -14,13 +16,13 @@ class ProductList extends React.Component {
     const products = this.props.products.map(product => {
       return (
         <li key={product.id}>
-          <h2>{product.name}</h2>
+          <h2>{uppercase(product.name)}</h2>
           <img src={product.image} alt={product.name}/>
           <p>
             ({product.createdAt.toLocaleDateString()}) -
             {product.description.length > 150 ? product.description.slice(0, 150) + '...' : product.description}
           </p>
-          <div className="price">{product.price} €</div>
+          <div className="price">{euroCurrency(product.price)}</div>
           <div>
             <button className="button">add to cart</button>
           </div>
