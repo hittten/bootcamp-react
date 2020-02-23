@@ -31,7 +31,7 @@ class ProductList extends React.Component {
     });
 
     return (
-      <div className="wrapper">
+      <div className="product-list wrapper">
         <h1>Products</h1>
         <div className="views">
           <i className={`material-icons ${!this.state.gridView ? 'selected' : ''}`}
