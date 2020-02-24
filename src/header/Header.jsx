@@ -1,5 +1,6 @@
 import React from 'react';
 import './Header.css';
+import {Link} from 'react-router-dom';
 
 class Header extends React.Component {
   constructor(props) {
@@ -13,37 +14,43 @@ class Header extends React.Component {
   render() {
     return (
       <header className={`wrapper ${this.state.navOpen ? 'nav-open' : ''}`}>
-        <i className="material-icons" onClick={() => this.state.navOpen ? this.openNav(false): this.openNav(true)}>
+        <i className="material-icons" onClick={() => this.state.navOpen ? this.openNav(false) : this.openNav(true)}>
           {this.state.navOpen ? 'close' : 'menu'}
         </i>
         <nav>
           <ul>
             <li onClick={() => this.openNav(false)}>
-              <i class="material-icons">
-                view_list
-              </i>
-              Products
+              <Link to="/">
+                <i className="material-icons">
+                  view_list
+                </i>
+                Products
+              </Link>
             </li>
             <li onClick={() => this.openNav(false)}>
-              <i class="material-icons">
-                shopping_cart
-            </i>
-              Car
+              <Link to="/car">
+                <i className="material-icons">
+                  shopping_cart
+                </i>
+                Car
+              </Link>
             </li>
           </ul>
         </nav>
         <div>
           Bootcamp Ecommerce
         </div>
-        <i className="material-icons" onClick={() => this.openNav(false)}>
-          shopping_cart
-        </i>
+        <Link to="/car">
+          <i className="material-icons" onClick={() => this.openNav(false)}>
+            shopping_cart
+          </i>
+        </Link>
       </header>
     );
   }
 
   openNav(value) {
-    this.setState({ navOpen: value });
+    this.setState({navOpen: value});
   }
 }
 
