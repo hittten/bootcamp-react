@@ -1,15 +1,27 @@
 import React from 'react';
 import './App.css';
 import Header from "./header/Header";
-import ProductList from "./product-list/ProductList";
-import {PRODUCTS} from "./mock-products";
+import ShoppingCar from "./shopping-car/ShoppingCar";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Products from "./products/Products";
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Header/>
-      <ProductList products={PRODUCTS}/>
-    </div>
+      <Switch>
+        <Route exact path="/">
+          <Products/>
+        </Route>
+        <Route path="/shopping-car">
+          <ShoppingCar/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
