@@ -1,0 +1,24 @@
+.products-add h1 {
+  text-align: center;
+}
+.products-add form {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.products-add form label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.products-add form input, textarea {
+  display: block;
+  box-sizing: border-box;
+  padding: 10px 5px;
+  width: 100%;
+}
+
+.products-add form textarea {
+  height: 100px;
+}
