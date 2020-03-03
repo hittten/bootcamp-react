@@ -1,40 +1,38 @@
-import { CAR_ITEMS, PRODUCTS } from "./mock-products";
+import {environment} from "./environments/environment";
 
 export const create = (product) => {
-  product.id = PRODUCTS.length + 1;
-  product.createdAt = new Date();
-  product.image = `https://picsum.photos/id/${product.id}/300/300`;
-
-  PRODUCTS.push(product);
-
-  return promisify(product);
+  return fetch(environment.apiUrl + '/addProduct/' + environment.user, {
+    method: 'POST',
+    body: JSON.stringify(product),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json());
 };
 
 export const list = () => {
-  return promisify(PRODUCTS);
-};
-
-export const listCarItems = () => {
-  return promisify(CAR_ITEMS);
+  return fetch(environment.apiUrl + '/getProducts/' + environment.user)
+    .then(res => res.json());
 };
 
 export const addToCar = (product) => {
-  CAR_ITEMS.push(product);
+  return fetch(environment.apiUrl + '/addProductToShoppingCar/' + environment.user, {
+    method: 'POST',
+    body: JSON.stringify({id: product.id}),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(res => res.json());
+};
 
-  return promisify(product)
+export const listCarItems = () => {
+  return fetch(environment.apiUrl + '/getShoppingCarProducts/' + environment.user)
+    .then(res => res.json());
 };
 
 export const removeFromCar = (product) => {
-  const index = CAR_ITEMS.findIndex(value => value.id === product.id);
-  const removedProduct = CAR_ITEMS[index];
-
-  CAR_ITEMS.splice(index, 1);
-
-  return promisify(removedProduct);
+  return fetch(environment.apiUrl + '/deleteFromShoppingCar/' + environment.user + '?id=' + product.id, {method: 'DELETE'})
+    .then(res => res.json());
 };
-
-function promisify(value) {
-  return new Promise(resolve =>
-    setTimeout(() => resolve(value), 500)
-  );
-}
