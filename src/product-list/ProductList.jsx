@@ -50,7 +50,7 @@ class ProductList extends React.Component {
             <h2>{uppercase(product.name)}</h2>
             <img src={product.image} alt={product.name}/>
             <p>
-              ({product.createdAt.toLocaleDateString()}) -
+              ({new Date(product.createdAt).toLocaleDateString()}) -
               {product.description.length > 150 ? product.description.slice(0, 150) + '...' : product.description}
             </p>
             <div className="price">{euroCurrency(product.price)}</div>
