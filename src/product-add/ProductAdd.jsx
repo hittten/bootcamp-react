@@ -26,9 +26,13 @@ class ProductAdd extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('new product', this.state);
-    productService.create(this.state);
     event.preventDefault();
+
+    productService.create({...this.state})
+      .then(product => {
+          console.log('new product', product);
+        }
+      );
   }
 
   render() {

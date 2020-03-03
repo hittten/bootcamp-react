@@ -7,22 +7,32 @@ export const create = (product) => {
 
   PRODUCTS.push(product);
 
-  return product;
+  return promisify(product);
 };
 
 export const list = () => {
-  return PRODUCTS;
+  return promisify(PRODUCTS);
 };
 
 export const listShoppingCarItems = () => {
-  return CAR_ITEMS;
+  return promisify([...CAR_ITEMS]);
 };
 
 export const addToShoppingCar = (product) => {
   CAR_ITEMS.push(product);
+
+  return promisify(null)
 };
 
 export const removeFromShoppingCar = (product) => {
   const index = CAR_ITEMS.findIndex(value => value.id === product.id);
   CAR_ITEMS.splice(index, 1);
+
+  return promisify(null);
 };
+
+function promisify(value) {
+  return new Promise(resolve =>
+    setTimeout(() => resolve(value), 500)
+  );
+}
