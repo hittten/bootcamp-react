@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import Products from "./products/Products";
 import ProductAdd from "./product-add/ProductAdd";
+import {Carto} from "./carto/Carto";
+import {CartoGeoJson} from "./carto/CartoGeoJson";
 
 function App() {
   return (
@@ -23,6 +25,11 @@ function App() {
         </Route>
         <Route path="/shopping-car">
           <ShoppingCar/>
+        </Route>
+        <Route path="/carto">
+          <Carto id="map" dataSet="bases_bicimad"/>
+          <Carto id="map2" dataSet="stops"/>
+          <CartoGeoJson id="map3"/>
         </Route>
       </Switch>
     </Router>
